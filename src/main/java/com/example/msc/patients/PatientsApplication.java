@@ -1,4 +1,4 @@
-package com.example.Msc.Patients;
+package com.example.msc.patients;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
