@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Map;
+//Cree el contactoRepository2, porque no me deja modifiar el otro usar este repository
 
 @Repository
 public class ContactosRepository2 {

@@ -1,11 +1,14 @@
 package com.example.msc.patients.entity;
 
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.jetbrains.annotations.NotNull;
 
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -16,10 +19,16 @@ public class DatosPersonales implements Serializable {
     @NotNull
     private int idDatosPersonales;
     @NotEmpty
+    @Min(1)
+    @Max(100)
     private String nombre;
     @NotEmpty
+    @Min(1)
+    @Max(100)
     private String apellido;
     @NotEmpty
+    @Min(1)
+    @Max(15)
     private String nroDocumento;
     @NotEmpty
     private Date fechaNacimiento;
@@ -97,4 +106,5 @@ public class DatosPersonales implements Serializable {
                 ", peso=" + peso +
                 '}';
     }
+
 }

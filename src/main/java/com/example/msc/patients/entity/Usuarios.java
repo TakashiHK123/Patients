@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+
 @Entity
 public class Usuarios implements Serializable {
 
