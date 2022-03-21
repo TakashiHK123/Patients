@@ -13,16 +13,13 @@ import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.List;
 import java.util.Map;
 
 
 @Repository
 public class DatosPersonalesRepository {
 
-    private static final String SQL="SELECT * FROM datospersonales ";
     private static final String SQL_POST = "INSERT INTO datospersonales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_DELETE = "DELETE FROM datospersonales WHERE id_datos_personales=?";
     private static final String SQL_GET = "SELECT * FROM datospersonales WHERE id_contacto = ?";
 
     @Autowired
@@ -35,9 +32,6 @@ public class DatosPersonalesRepository {
         jdbcTemplate.setExceptionTranslator(customSQLErrorCodeTranslator);
     }
 
-    public List<DatosPersonales> getAll() {  //ver si se va a usar, si no se elimina
-        return jdbcTemplate.query(SQL, new DatosPersonalesRowMapper());
-    }
     //retorna un retorna el id si se genera, y si no retorna un 0
     public int addDatosPersonales(String nombre, String apellido, String nroDocumento, Date fechaNacimiento, double peso){
 
@@ -50,6 +44,7 @@ public class DatosPersonalesRepository {
             preparedStatement.setDate(4,fechaNacimiento);
             preparedStatement.setDouble(5,peso);
             return preparedStatement;
+
         },keyHolder);
         Integer id = (Integer) keyHolder.getKeys()
                 .entrySet().stream()
@@ -65,8 +60,15 @@ public class DatosPersonalesRepository {
         return idReturn;
     }
 
-
-
+    //Get de datos personales del paciente
+    public DatosPersonales getDatosPersonales(int idDatosPersonales) {
+        DatosPersonales datosPersonales = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idDatosPersonales }, new DatosPersonalesRowMapper());
+        if(datosPersonales!=null){
+            return datosPersonales;
+        }else{
+            return null;
+        }
+    }
 
 }
 

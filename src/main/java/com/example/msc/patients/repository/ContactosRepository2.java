@@ -17,9 +17,7 @@ import java.util.Map;
 @Repository
 public class ContactosRepository2 {
 
-    private static final String SQL="SELECT * FROM contactos";
     private static final String SQL_POST = "INSERT INTO contactos (type, value, id_datos_personales) VALUES (?, ?, ?)";
-    private static final String SQL_DELETE = "DELETE FROM contactos WHERE id_contacto=?";
     private static final String SQL_GET = "SELECT * FROM contactos WHERE id_contacto = ?";
 
     @Autowired
@@ -31,9 +29,11 @@ public class ContactosRepository2 {
         final CustomSQLErrorCodeTranslator customSQLErrorCodeTranslator = new CustomSQLErrorCodeTranslator();
         jdbcTemplate.setExceptionTranslator(customSQLErrorCodeTranslator);
     }
+    //Agregar retorna un int de validacion
     public int addContacto(String type, String value, int idDatosPersonales) {
         return jdbcTemplate.update(SQL_POST, type, value, idDatosPersonales);
     }
+    //GET Contactos del paciente
     public Contactos getContactos(int idContacto) {
         Contactos contactos = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idContacto }, new ContactosRowMapper());
         if(contactos!=null){
@@ -54,7 +54,7 @@ public class ContactosRepository2 {
         },keyHolder);
         Integer id = (Integer) keyHolder.getKeys()
                 .entrySet().stream()
-                .filter(m  -> m.getKey().equalsIgnoreCase("idalumno"))
+                .filter(m  -> m.getKey().equalsIgnoreCase("idcontactos"))
                 .map(Map.Entry::getValue)
                 .findFirst().orElse(null);
         Contactos contactos = new Contactos();
@@ -63,8 +63,6 @@ public class ContactosRepository2 {
         contactos.setIdDatosPersonales(idDatosPersonales);
         contactos.setIdContacto(id);
         return contactos;
-
     }
-
 
 }
