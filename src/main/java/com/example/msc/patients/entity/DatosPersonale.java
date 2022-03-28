@@ -4,7 +4,6 @@ package com.example.msc.patients.entity;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -13,7 +12,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class DatosPersonales implements Serializable {
+public class DatosPersonale implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @NotNull
@@ -35,10 +34,10 @@ public class DatosPersonales implements Serializable {
     @NotNull
     private double peso;
 
-    public DatosPersonales() {
+    public DatosPersonale() {
     }
 
-    public DatosPersonales(@NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @NotNull double peso) {
+    public DatosPersonale(@NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @NotNull double peso) {
         this.idDatosPersonales = idDatosPersonales;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -97,7 +96,7 @@ public class DatosPersonales implements Serializable {
 
     @Override
     public String toString() {
-        return "DatosPersonales{" +
+        return "DatosPersonale{" +
                 "idDatosPersonales=" + idDatosPersonales +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

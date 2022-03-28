@@ -1,6 +1,6 @@
 package com.example.msc.patients.repository;
 
-import com.example.msc.patients.entity.DatosPersonales;
+import com.example.msc.patients.entity.DatosPersonale;
 import com.example.msc.patients.rowMapper.DatosPersonalesRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +61,8 @@ public class DatosPersonalesRepository {
     }
 
     //Get de datos personales del paciente
-    public DatosPersonales getDatosPersonales(int idDatosPersonales) {
-        DatosPersonales datosPersonales = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idDatosPersonales }, new DatosPersonalesRowMapper());
+    public DatosPersonale getDatosPersonales(int idDatosPersonales) {
+        DatosPersonale datosPersonales = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idDatosPersonales }, new DatosPersonalesRowMapper());
         if(datosPersonales!=null){
             return datosPersonales;
         }else{

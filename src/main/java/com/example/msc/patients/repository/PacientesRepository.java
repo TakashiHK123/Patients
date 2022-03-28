@@ -1,7 +1,7 @@
 package com.example.msc.patients.repository;
 
 
-import com.example.msc.patients.entity.Pacientes;
+import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.rowMapper.PacientesRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class PacientesRepository {
         jdbcTemplate.setExceptionTranslator(customSQLErrorCodeTranslator);
     }
     //GET all
-    public List<Pacientes> getAll() {  //ver si se va a usar, si no se elimina
+    public List<Paciente> getAll() {  //ver si se va a usar, si no se elimina
         return jdbcTemplate.query(SQL, new PacientesRowMapper());
     }
     //POST retorna un retorna el id si se genera, y si no retorna un 0 
@@ -62,8 +62,8 @@ public class PacientesRepository {
         return idReturn;
     }
     // GET Obtener Paciente
-    public Pacientes getPaciente(int idPaciente) {
-        Pacientes paciente = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idPaciente }, new PacientesRowMapper());
+    public Paciente getPaciente(int idPaciente) {
+        Paciente paciente = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idPaciente }, new PacientesRowMapper());
         if(paciente!=null){
             return paciente;
         }else{

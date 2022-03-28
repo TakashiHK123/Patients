@@ -2,17 +2,17 @@ package com.example.msc.patients.rowMapper;
 
 
 
-import com.example.msc.patients.entity.DatosPersonales;
+import com.example.msc.patients.entity.DatosPersonale;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DatosPersonalesRowMapper implements RowMapper<DatosPersonales> {
+public class DatosPersonalesRowMapper implements RowMapper<DatosPersonale> {
 
     @Override
-    public DatosPersonales mapRow(final ResultSet resultSet, final int rowNum) throws SQLException {
-        final DatosPersonales datosPersonales = new DatosPersonales();
+    public DatosPersonale mapRow(final ResultSet resultSet, final int rowNum) throws SQLException {
+        final DatosPersonale datosPersonales = new DatosPersonale();
         datosPersonales.setIdDatosPersonales(resultSet.getInt("id_datos_personales"));
         datosPersonales.setNombre(resultSet.getString("nombre"));
         datosPersonales.setApellido(resultSet.getString("apellido"));

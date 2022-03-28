@@ -1,6 +1,6 @@
 package com.example.msc.patients.repository;
 
-import com.example.msc.patients.entity.Contactos;
+import com.example.msc.patients.entity.Contacto;
 import com.example.msc.patients.rowMapper.ContactosRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.Map;
 @Repository
 public class ContactosRepository2 {
 
-    private static final String SQL_POST = "INSERT INTO contactos (type, value, id_datos_personales) VALUES (?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO contactos (type, value, id_datos_personales) VALUES (?, ?, ?)";
     private static final String SQL_GET = "SELECT * FROM contactos WHERE id_contacto = ?";
 
     @Autowired
@@ -32,7 +32,7 @@ public class ContactosRepository2 {
     }
     //Agregar retorna un int de validacion
     public int addContacto(String type, String value, int idDatosPersonales) {
-        return jdbcTemplate.update(SQL_POST, type, value, idDatosPersonales);
+        return jdbcTemplate.update(SQL_INSERT, type, value, idDatosPersonales);
     }
     //GET Contactos del paciente
     public Contactos getContactos(int idContacto) {
@@ -43,11 +43,12 @@ public class ContactosRepository2 {
             return null;
         }
     }
-    public Contactos addContactoReturnAlu(String type, String value, int idDatosPersonales){
+    //Agregar retorna Contacto
+    public Contacto addContactoReturnAlu(String type, String value, int idDatosPersonales){
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_POST, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, type);
             preparedStatement.setString(2, value);
             preparedStatement.setInt(3,idDatosPersonales);

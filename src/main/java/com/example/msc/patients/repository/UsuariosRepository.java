@@ -1,7 +1,7 @@
 package com.example.msc.patients.repository;
 
 
-import com.example.msc.patients.entity.Usuarios;
+import com.example.msc.patients.entity.Usuario;
 
 import com.example.msc.patients.rowMapper.UsuariosRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
@@ -32,7 +32,7 @@ public class UsuariosRepository {
         jdbcTemplate.setExceptionTranslator(customSQLErrorCodeTranslator);
     }
     //GET all
-    public List<Usuarios> getAll() {  //ver si se va a usar, si no se elimina
+    public List<Usuario> getAll() {  //ver si se va a usar, si no se elimina
         return jdbcTemplate.query(SQL, new UsuariosRowMapper());
     }
     //POST retorna un retorna el id si se genera, y si no retorna un 0 
@@ -61,8 +61,8 @@ public class UsuariosRepository {
         return idReturn;
     }
     // GET Obtener usuario
-    public Usuarios getusuario(int idusuario) {
-        Usuarios usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idusuario }, new UsuariosRowMapper());
+    public Usuario getusuario(int idusuario) {
+        Usuario usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idusuario }, new UsuariosRowMapper());
         if(usuario!=null){
             return usuario;
         }else{

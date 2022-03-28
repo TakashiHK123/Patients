@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Entity
-public class Usuarios implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @NotNull
@@ -21,10 +21,10 @@ public class Usuarios implements Serializable {
     @NotNull
     private int idDatosPersonales;
 
-    public Usuarios() {
+    public Usuario() {
     }
 
-    public Usuarios(int idUsuario, String username, String password, String estado, int idDatosPersonales) {
+    public Usuario(int idUsuario, String username, String password, String estado, int idDatosPersonales) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -74,7 +74,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuarios{" +
+        return "Usuario{" +
                 "idUsuario=" + idUsuario +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
